@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container" style="max-width: 600px;">
+    <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 1rem;">Analyze Food</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 2rem;">Upload an image or type a food's name to see its impact on your body.</p>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Food Image (Upload)</label>
+            <input type="file" name="file" class="form-control" accept="image/*">
+        </div>
+        <div style="text-align:center; margin: 1rem 0;"><b>OR</b></div>
+        <div class="form-group">
+            <label>Food Name</label>
+            <input type="text" name="food_name" class="form-control" placeholder="E.g. Apple, Donut, Chicken Salad">
+        </div>
+        <button type="submit" class="btn-primary" style="margin-top: 1rem;">Analyze Now</button>
+    </form>
+    
+    {% if result %}
+    <div style="margin-top: 3rem; padding: 2rem; border-radius: 12px; background: {% if result['status'] == 'Good' %}#e9f7ef{% else %}#f8d7da{% endif %}; border: 2px solid {% if result['status'] == 'Good' %}var(--dark-green){% else %}#dc3545{% endif %};">
+        <h3 style="color: {% if result['status'] == 'Good' %}var(--dark-green){% else %}#dc3545{% endif %};">Result for: {{ result['name'] }}</h3>
+        <h4 style="margin-top: 1rem;">Verdict: {{ result['status'] }}</h4>
+        <p style="margin-top: 0.5rem; font-size: 1.1rem;">{{ result['impact'] }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
