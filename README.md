@@ -41,5 +41,5 @@ Safe Food is a lightweight web application that allows users to create an accoun
 - SQLite3
 - HTML5, CSS3, ES6 JavaScript
 
-##It's currently in development
+## It's currently in development
 
